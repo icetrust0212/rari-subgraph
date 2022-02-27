@@ -2,7 +2,10 @@
   "name": "rari-finance",
   "license": "UNLICENSED",
   "scripts": {
-    "codegen": "graph codegen",
+    "script": "ts-node scripts",
+    "precodegen:kovan": "rimraf src/generated",
+    "codegen": "graph codegen subgraph.yaml --output-dir src/generated",
+    "postcodegen": "yarn script flatten",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ rari-finance",
     "create-local": "graph create --node http://localhost:8020/ rari-finance",
@@ -11,6 +14,13 @@
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.22.2",
-    "@graphprotocol/graph-ts": "0.22.1"
+    "@graphprotocol/graph-ts": "0.22.1",
+    "@openzeppelin/contracts": "^4.5.0",
+    "@types/glob": "^7.2.0",
+    "@types/yargs": "^17.0.8",
+    "flatten": "^1.0.3",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5",
+    "yargs": "^17.3.1"
   }
 }
